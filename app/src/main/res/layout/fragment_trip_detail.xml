@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/relativeLayoutTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar_TripDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@null"
+                    android:theme="@style/ToolbarColoredBackArrow"
+                    android:elevation="4dp"/>
+
+                <ImageView
+                    android:id="@+id/imgTripDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="221dp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/trip_1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đà Nẵng Sông Hàn"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="30dp"
+                        android:id="@+id/txtTitleTripDetail"
+                        />
+
+                    <TextView
+                        android:id="@+id/txtSluganTripDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="a journey into the past"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="17dp"
+                        />
+
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:progressTint="#e8de980d"
+                        android:progressBackgroundTint="#e8de980d"
+                        android:secondaryProgressTint="#e3807970"
+                        style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                        android:stepSize="0.5"
+                        android:rating="3.5" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_margin="24dp"
+                android:layout_below="@id/relativeLayoutTop"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtTitleOfDescriptionTripDetail"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/avenirnext_regular"
+                        android:text="The Capital of Sakura" />
+
+                    <TextView
+                        android:id="@+id/txtDescriptionTripDetail"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Japan has 20 World Heritage Sites, including Himeji Castle, Historic Monuments of Ancient Kyoto and Nara. \nPopular tourist attractions include Tokyo and Hiroshima, Mount Fuji, ski resorts such as Niseko in Hokkaido, Okinawa, riding the shinkansen and taking advantage of Japan's hotel and hotspring network."
+                        android:fontFamily="@font/avenirnext_regular"
+                        android:textSize="16dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/map"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:weightSum="10">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Những trải nghiệm "
+                            android:layout_weight="5"
+                            android:textSize="16dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tất cả"
+                            android:textAlignment="textEnd"
+                            android:layout_weight="5"
+                            android:textSize="16dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:weightSum="2"
+                                android:layout_width="match_parent"
+                                android:layout_height="160dp"
+                                android:orientation="horizontal">
+
+                                <RelativeLayout
+                                    android:layout_marginRight="4dp"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:scaleType="fitXY"
+                                        android:id="@+id/img1"
+                                        android:src="@drawable/trip_1"/>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginBottom="16dp"
+                                        android:gravity="center"
+                                        android:text="Greece"
+                                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium.Inverse"
+                                        android:textSize="20dp" />
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_weight="1"
+                                    android:weightSum="2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <RelativeLayout
+                                        android:layout_marginBottom="4dp"
+                                        android:layout_weight="1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="80dp">
+                                        <ImageView
+                                            android:id="@+id/img2"
+                                            android:scaleType="fitXY"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:src="@drawable/trip_1"/>
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_alignParentBottom="true"
+                                            android:layout_marginBottom="8dp"
+                                            android:gravity="center"
+                                            android:text="Iceland"
+                                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium.Inverse"
+                                            android:textSize="20dp" />
+                                    </RelativeLayout>
+
+                                    <LinearLayout
+                                        android:layout_marginTop="4dp"
+                                        android:layout_weight="1"
+                                        android:weightSum="2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="80dp"
+                                        android:orientation="horizontal">
+
+                                        <RelativeLayout
+                                            android:layout_marginRight="4dp"
+                                            android:layout_weight="1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+                                            <ImageView
+                                                android:id="@+id/img3"
+                                                android:scaleType="fitXY"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/trip_1"/>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_alignParentStart="true"
+                                                android:layout_alignParentBottom="true"
+                                                android:layout_marginBottom="8dp"
+                                                android:gravity="center"
+                                                android:text="France"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium.Inverse"
+                                                android:textSize="20dp" />
+
+                                        </RelativeLayout>
+                                        <RelativeLayout
+                                            android:layout_marginLeft="4dp"
+                                            android:layout_weight="1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+                                            <ImageView
+                                                android:id="@+id/img4"
+                                                android:foreground="@drawable/custom_img"
+                                                android:scaleType="fitXY"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/trip_1"/>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_alignParentStart="true"
+                                                android:layout_alignParentBottom="true"
+                                                android:layout_centerInParent="true"
+                                                android:gravity="center"
+                                                android:text="18+"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium.Inverse"
+                                                android:textSize="20dp" />
+
+                                        </RelativeLayout>
+                                    </LinearLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtTitleOfDescription2TripDetail"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/avenirnext_regular"
+                            android:text="The Capital of Sakura" />
+
+                        <TextView
+                            android:id="@+id/txtDescription2TripDetail"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="pan has nine forest ecoregions which reflect the climate and geography of the islands. \nThey range from subtropical moist broadleaf forests in the Ryūkyū and Bonin Islands, to temperate broadleaf and mixed forests in the mild climate regions."
+                            android:fontFamily="@font/avenirnext_regular"
+                            android:textSize="16dp"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:weightSum="10">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Nhà Hàng"
+                                android:layout_weight="5"
+                                android:textSize="16dp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Tất cả"
+                                android:textAlignment="textEnd"
+                                android:layout_weight="5"
+                                android:textSize="16dp"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <android.support.v7.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/rlvListRelaxation"
+                                android:orientation="horizontal">
+                            </android.support.v7.widget.RecyclerView>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnBookingTrip"
+                        android:layout_width="335dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="50dp"
+                        android:background="@drawable/customize_button_login"
+                        android:text="Đặt Vé Ngay"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorWhite"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

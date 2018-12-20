@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SecondActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            >
+
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/airport_blue"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/avenirnext_regular"
+                android:text="K Travel" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="287dp"
+            android:layout_height="264dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            app:srcCompat="@drawable/island" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Du lịch bất cứ lúc nào ..."
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/avenirnext_regular"/>
+
+        <Button
+            android:id="@+id/btnCreateAccount"
+            android:layout_width="333dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="160dp"
+            android:background="@drawable/customize_button_login"
+            android:text="Thử Ngay"
+            android:textSize="16dp"
+            android:textColor="@color/colorWhite"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        <TextView
+            android:id="@+id/txtSignIn"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng Nhập Ngay"
+            android:textStyle="italic"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/avenirnext_regular"
+            android:layout_gravity="center|bottom"/>
+    </LinearLayout>
+</LinearLayout>

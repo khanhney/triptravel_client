@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_trips"
+        android:icon="@drawable/suitcase_svg"
+        android:title="Trip"/>
+
+    <item
+        android:id="@+id/navigation_airplanes"
+        android:icon="@drawable/airplanesvg"
+        android:title="Flights"/>
+
+    <item android:id="@+id/navigation_chatbot"
+        android:icon="@drawable/speech"
+        android:title="Chat" />
+
+    <item
+        android:id="@+id/navigation_hotels"
+        android:icon="@drawable/twin"
+        android:title="Hotel"/>
+
+    <item
+        android:id="@+id/navigation_profiles"
+        android:icon="@drawable/profile"
+        android:title="Profile"/>
+
+</menu>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:orientation="vertical"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_login"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@null"
+        android:elevation="4dp"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng Nhập"
+            android:fontFamily="@font/avenirnextltpro_bold"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            />
+
+        <EditText
+            android:id="@+id/txtEmailLoginPage"
+            android:layout_width="369dp"
+            android:layout_height="56dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:hint="Tên tài khoản hoặc email"
+            android:paddingLeft="16dp"
+            android:background="@drawable/login_input_customize" />
+
+        <EditText
+            android:id="@+id/txtPasswordLoginPage"
+            android:layout_width="369dp"
+            android:layout_height="56dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:hint="Mật Khẩu"
+            android:inputType="textPassword"
+            android:paddingLeft="16dp"
+            android:background="@drawable/login_input_customize" />
+
+        <Button
+            android:id="@+id/btnLoginPage"
+            android:layout_width="335dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/customize_button_login"
+            android:text="Đăng Nhập"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorWhite"
+        />
+
+        <TextView
+            android:id="@+id/txtResetPasswordPageLogin"
+            android:layout_width="128dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/avenirnext_regular"
+            android:text="Quên Mật Khẩu?"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="italic" />
+    </LinearLayout>
+
+</LinearLayout>
