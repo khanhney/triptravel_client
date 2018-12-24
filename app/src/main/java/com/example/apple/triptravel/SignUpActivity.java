@@ -110,7 +110,6 @@ public class SignUpActivity extends AppCompatActivity {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    dialog.build().dismiss();
                                     Toast.makeText(SignUpActivity.this, "Tài khoản đã tồn tại!", Toast.LENGTH_SHORT).show();
                                 }
                             }, 1000);
@@ -124,12 +123,15 @@ public class SignUpActivity extends AppCompatActivity {
                                     finish();
                                 }
                             }, 1000);
-
                         }
+
+                        dialog.build().dismiss();
+
                     }else {
-                        Toast.makeText(SignUpActivity.this, "user null", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Lỗi server!", Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception e){
+                    dialog.build().dismiss();
                     Log.e("ERROR_", e.getMessage());
                 }
             }

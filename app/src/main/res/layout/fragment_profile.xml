@@ -66,6 +66,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
+                        android:id="@+id/txtUsername"
                         android:text="NTC"/>
 
                     <LinearLayout
@@ -82,6 +83,7 @@
                             android:src="@drawable/place"/>
 
                         <TextView
+                            android:id="@+id/txtAddress"
                             android:layout_marginLeft="8dp"
                             android:layout_weight="1.8"
                             android:layout_width="match_parent"
@@ -102,6 +104,7 @@
                             android:src="@drawable/email"/>
 
                         <TextView
+                            android:id="@+id/txtEmail"
                             android:layout_marginLeft="8dp"
                             android:layout_weight="1.8"
                             android:layout_width="match_parent"

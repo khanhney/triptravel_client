@@ -4,14 +4,18 @@ import android.app.AlertDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -131,7 +135,7 @@ public class HotelFragment extends Fragment {
         rlNearYou = view.findViewById(R.id.rlvListNearYouFragmentHotel);
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rlNearYou.setLayoutManager(layoutManager);
-        rlNearYou.hasFixedSize();
+        rlNearYou.setHasFixedSize(true);
 
         //popular custom
         list = new ArrayList<>();
@@ -143,7 +147,7 @@ public class HotelFragment extends Fragment {
         rlDeal = view.findViewById(R.id.rlvListDealFragmentHotel);
         layoutManagerDeal = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rlDeal.setLayoutManager(layoutManagerDeal);
-        rlDeal.hasFixedSize();
+        rlDeal.setHasFixedSize(true);
 
         //popular custom
         listDeal = new ArrayList<>();
@@ -155,7 +159,7 @@ public class HotelFragment extends Fragment {
         rlBestHotel = view.findViewById(R.id.rlvListBestHotelFragmentHotel);
         layoutManagerBestHotel = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rlBestHotel.setLayoutManager(layoutManagerBestHotel);
-        rlBestHotel.hasFixedSize();
+        rlBestHotel.setHasFixedSize(true);
 
         //popular custom
         listBestHotel = new ArrayList<>();
@@ -182,27 +186,36 @@ public class HotelFragment extends Fragment {
         editSearchHotel.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                Toast.makeText(getActivity(), s.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                service.getSearchHotel(s.toString()).enqueue(new Callback<SearchHotel>() {
-                    @Override
-                    public void onResponse(Call<SearchHotel> call, Response<SearchHotel> response) {
-                        if (response.isSuccessful()){
-                            if (!response.body().getError()){
-                                listSearch.addAll(response.body().getData());
-                                adapterSearch.notifyDataSetChanged();
-                            }
+            public void onTextChanged(final CharSequence s, int start, int before, int count) {
+                try{
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            service.getSearchHotel(s.toString()).enqueue(new Callback<SearchHotel>() {
+                                @Override
+                                public void onResponse(@NonNull Call<SearchHotel> call, @NonNull Response<SearchHotel> response) {
+                                    listSearch.clear();
+                                    if (response.isSuccessful()){
+                                        if (!response.body().getError()){
+                                            listSearch.addAll(response.body().getData());
+//                                            adapterSearch.notifyDataSetChanged();
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(@NonNull Call<SearchHotel> call, Throwable t) {
+                                    Log.e("___", t.getMessage());
+                                }
+                            });
                         }
-                    }
-
-                    @Override
-                    public void onFailure(Call<SearchHotel> call, Throwable t) {
-
-                    }
-                });
+                    }, 300);
+                }catch (Exception e){
+                    Log.e("___ERROR", e.getMessage());
+                }
             }
 
             @Override
@@ -210,10 +223,40 @@ public class HotelFragment extends Fragment {
 //                s.clear();
             }
         });
+
+//        editSearchHotel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                DataSearch dataSearch = listSearch.get(i);
+//
+//                DataHotel dataHotel = new DataHotel(
+//                        dataSearch.getStatus(),
+//                        dataSearch.getId(),
+//                        dataSearch.getTitle(),
+//                        dataSearch.getDescription(),
+//                        dataSearch.getPrice(),
+//                        dataSearch.getV(),
+//                        dataSearch.getImage(),
+//                        dataSearch.getReview(),
+//                        dataSearch.getUpdateAt());
+//
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("DATA_HOTEL", dataHotel);
+//                HotelDetailFragment hotelDetailFragment = new HotelDetailFragment();
+//                hotelDetailFragment.setArguments(bundle);
+//
+//                ((AppCompatActivity) getActivity()).getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.fragment_container, hotelDetailFragment, "hotel_detail_fragment")
+//                        .addToBackStack(null)
+//                        .commit();
+//            }
+//        });
     }
 
     private void addControls(View view) {
         editSearchHotel = view.findViewById(R.id.editSearchHotel);
+        editSearchHotel.setHasTransientState(true);
         listSearch = new ArrayList<>();
         adapterSearch = new ListSearchAdapter(getActivity(), listSearch);
         editSearchHotel.setAdapter(adapterSearch);
@@ -227,10 +270,9 @@ public class HotelFragment extends Fragment {
 
         service.getListHotel().enqueue(new Callback<Hotel>() {
             @Override
-            public void onResponse(Call<Hotel> call, Response<Hotel> response) {
+            public void onResponse(@NonNull Call<Hotel> call, @NonNull Response<Hotel> response) {
                 if (response.isSuccessful()){
                     if (response.body().getError()){
-                        dialog.dismiss();
                         Toast.makeText(getContext(), "Lỗi kết nối", Toast.LENGTH_SHORT).show();
                     }else {
                         for (int i = 0; i < response.body().getData().size(); i++){
@@ -243,22 +285,16 @@ public class HotelFragment extends Fragment {
 
                         adapter.notifyDataSetChanged();
                         adapterDeal.notifyDataSetChanged();
-
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                dialog.dismiss();
-                            }
-                        }, 2000);
                     }
-
-
                 }
+
+                dialog.dismiss();
+
             }
 
             @Override
-            public void onFailure(Call<Hotel> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<Hotel> call, @NonNull Throwable t) {
+                dialog.dismiss();
             }
         });
 

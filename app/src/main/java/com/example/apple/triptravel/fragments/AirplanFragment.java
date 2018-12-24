@@ -113,7 +113,7 @@ public class AirplanFragment extends Fragment {
         rlPopularDestination = view.findViewById(R.id.rlvListPopular);
         layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rlPopularDestination.setLayoutManager(layoutManager);
-        rlPopularDestination.hasFixedSize();
+        rlPopularDestination.setHasFixedSize(true);
 
         //popular custom
         list = new ArrayList<>();
@@ -130,7 +130,7 @@ public class AirplanFragment extends Fragment {
         rlDeal = view.findViewById(R.id.rlvListDeal);
         layoutManagerDeal = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rlDeal.setLayoutManager(layoutManagerDeal);
-        rlDeal.hasFixedSize();
+        rlDeal.setHasFixedSize(true);
 
         //popular custom
         listDeal = new ArrayList<>();
@@ -183,7 +183,7 @@ public class AirplanFragment extends Fragment {
         rlCityBreak = view.findViewById(R.id.rlvListCityBreak);
         layoutManagerCity = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         rlCityBreak.setLayoutManager(layoutManagerCity);
-        rlCityBreak.hasFixedSize();
+        rlCityBreak.setHasFixedSize(true);
 
         //popular custom
         list = new ArrayList<>();

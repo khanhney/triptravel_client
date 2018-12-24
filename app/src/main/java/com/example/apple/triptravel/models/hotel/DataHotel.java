@@ -35,6 +35,21 @@ public class DataHotel implements Serializable {
     @Expose
     private String updateAt;
 
+    public DataHotel() {
+    }
+
+    public DataHotel(Integer status, String id, String title, String description, String price, Integer v, String image, Integer review, String updateAt) {
+        this.status = status;
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.v = v;
+        this.image = image;
+        this.review = review;
+        this.updateAt = updateAt;
+    }
+
     public Integer getStatus() {
         return status;
     }

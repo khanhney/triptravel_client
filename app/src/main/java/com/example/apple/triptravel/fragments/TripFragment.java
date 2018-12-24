@@ -17,12 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apple.triptravel.R;
-import com.example.apple.triptravel.SignUpActivity;
-import com.example.apple.triptravel.adapter.ListCardAdapter;
+import com.example.apple.triptravel.adapter.trip.ListTripAdapter;
 import com.example.apple.triptravel.common.UserCommon;
 import com.example.apple.triptravel.common.Utils;
 import com.example.apple.triptravel.interfaces.GetTripService;
-import com.example.apple.triptravel.models.Trip;
 import com.example.apple.triptravel.models.trip.DataTrip;
 import com.squareup.picasso.Picasso;
 
@@ -37,7 +35,7 @@ import retrofit2.Response;
 public class TripFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private ListCardAdapter adapter1, adapter2;
+    private ListTripAdapter adapter1, adapter2;
     private List<DataTrip> tripsRelaxation, tripAdvenfuture;
     private RecyclerView.LayoutManager manager1, manager2;
 
@@ -67,23 +65,65 @@ public class TripFragment extends Fragment {
         tripAdvenfuture = new ArrayList<>();
 
         recyclerView = view.findViewById(R.id.rlvListRelaxation);
-        recyclerView.hasFixedSize();
-        manager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setHasFixedSize(true);
+        manager1 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(manager1);
 
-        adapter1 = new ListCardAdapter(getContext(), tripsRelaxation);
+        adapter1 = new ListTripAdapter(getActivity(), tripsRelaxation);
         recyclerView.setAdapter(adapter1);
 
         //custom advenfuture
 
         rlvListAdventure = view.findViewById(R.id.rlvListAdventure);
-        rlvListAdventure.hasFixedSize();
-        manager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        rlvListAdventure.setHasFixedSize(true);
+        manager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rlvListAdventure.setLayoutManager(manager2);
 
-        adapter2 = new ListCardAdapter(getContext(), tripAdvenfuture);
+        adapter2 = new ListTripAdapter(getActivity(), tripAdvenfuture);
         rlvListAdventure.setAdapter(adapter2);
 
+
+
+        addEvents(view);
+
+        return view;
+    }
+
+    private void addEvents(View view) {
+        imageView5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TripDetailFragment tripDetailFragment = new TripDetailFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("DATA_TRIP", dataTrip);
+                tripDetailFragment.setArguments(bundle);
+
+
+                getActivity()
+                        .getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, tripDetailFragment, "trip_detail_fragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
+    private void addControls(View view) {
+        imageView5 = view.findViewById(R.id.imageView5);
+        txtTitleTrip = view.findViewById(R.id.txtTitle);
+        txtDescription = view.findViewById(R.id.txtDescription);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         try {
             dialog = new SpotsDialog.Builder().setContext(getContext()).build();
             dialog.setMessage("Loading...");
@@ -92,7 +132,8 @@ public class TripFragment extends Fragment {
 
             service.getListTrip().enqueue(new Callback<com.example.apple.triptravel.models.trip.Trip>() {
                 @Override
-                public void onResponse(Call<com.example.apple.triptravel.models.trip.Trip> call, final Response<com.example.apple.triptravel.models.trip.Trip> response) {
+                public void onResponse(@NonNull Call<com.example.apple.triptravel.models.trip.Trip> call,
+                                       @NonNull final Response<com.example.apple.triptravel.models.trip.Trip> response) {
                     if (response.isSuccessful()){
                         if (response.body().getError()){
                             new Handler().postDelayed(new Runnable() {
@@ -119,51 +160,20 @@ public class TripFragment extends Fragment {
 
                             adapter1.notifyDataSetChanged();
                             adapter2.notifyDataSetChanged();
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-
-
-                                    dialog.dismiss();
-                                }
-                            }, 3000);
 
                         }
                     }
+                    dialog.dismiss();
                 }
 
                 @Override
-                public void onFailure(Call<com.example.apple.triptravel.models.trip.Trip> call, Throwable t) {
-
+                public void onFailure(@NonNull Call<com.example.apple.triptravel.models.trip.Trip> call, @NonNull Throwable t) {
+                    dialog.dismiss();
+                    Toast.makeText(getActivity(), "Lỗi server", Toast.LENGTH_SHORT).show();
                 }
             });
         }catch (Exception e){
             Log.e("Error__", e.getMessage());
         }
-
-        addEvents(view);
-
-        return view;
-    }
-
-    private void addEvents(View view) {
-        imageView5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TripDetailFragment tripDetailFragment = new TripDetailFragment();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("DATA_TRIP", dataTrip);
-                tripDetailFragment.setArguments(bundle);
-
-
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, tripDetailFragment).commit();
-            }
-        });
-    }
-
-    private void addControls(View view) {
-        imageView5 = view.findViewById(R.id.imageView5);
-        txtTitleTrip = view.findViewById(R.id.txtTitle);
-        txtDescription = view.findViewById(R.id.txtDescription);
     }
 }

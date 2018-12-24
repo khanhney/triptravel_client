@@ -3,6 +3,7 @@ package com.example.apple.triptravel.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -122,7 +123,7 @@ public class ChatFragment extends Fragment{
             @Override
             public void onClick(View v) {
 
-                String message = editSent.getText().toString();
+                final String message = editSent.getText().toString();
                 if (!TextUtils.isEmpty(message)){
                     Utils.userCurrent = "1";
 
@@ -135,11 +136,10 @@ public class ChatFragment extends Fragment{
                         @Override
                         public void onResponse(Call<ChatBot> call, Response<ChatBot> response) {
                             if (response.isSuccessful()){
-
                                 Toast.makeText(getContext(), "Bot: " + response.body().getAwnser(), Toast.LENGTH_SHORT).show();
                                 messageList.add(new Chat("0", response.body().getAwnser()));
                                 mMessageAdapter.notifyDataSetChanged();
-                            }
+                            }else Toast.makeText(getActivity(), "Lỗi server", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override

@@ -39,6 +39,7 @@ public class HotelDetailReviewRatingWriteFragment extends Fragment {
 
     private GetHotelService service;
     private int rating;
+    private String HOTEL_ID;
 
 
     @Override
@@ -73,8 +74,10 @@ public class HotelDetailReviewRatingWriteFragment extends Fragment {
     private void addEvents(View view) {
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                rating = rating;
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+//                Toast.makeText(getActivity(), "rating: " + v, Toast.LENGTH_SHORT).show();
+//                rating = Integer.parseInt(v + "");
+                ratingBar.setRating(v);
             }
         });
 
@@ -82,9 +85,9 @@ public class HotelDetailReviewRatingWriteFragment extends Fragment {
         btnRatingReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = editTitleRatingWrite.getText().toString();
-                String message = editRatingReview.getText().toString();
-                rating = (int) ratingBar.getRating();
+                String title        = editTitleRatingWrite.getText().toString();
+                String message      = editRatingReview.getText().toString();
+                rating              = (int) ratingBar.getRating();
 
                 if (TextUtils.isEmpty(title) || TextUtils.isEmpty(message)){
                     Toast.makeText(getContext(), "Vui lòng nhập đầy đủ nội dung!", Toast.LENGTH_SHORT).show();
@@ -93,34 +96,25 @@ public class HotelDetailReviewRatingWriteFragment extends Fragment {
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences("INFO_USER_AND_TOKEN", Context.MODE_PRIVATE);
                     token = sharedPreferences.getString("Token", "");
 
-                    service.postRatingWrite(token, title, message, rating).enqueue(new Callback<DataRatingWrite>() {
+                    final AlertDialog dialog = new SpotsDialog.Builder().setContext(getContext()).build();
+                    dialog.setMessage("Loading...");
+                    dialog.setCancelable(false);
+                    dialog.show();
+
+                    service.postRatingWrite(token, title, message, rating, HOTEL_ID).enqueue(new Callback<DataRatingWrite>() {
                         @Override
                         public void onResponse(Call<DataRatingWrite> call, Response<DataRatingWrite> response) {
                             if (response.isSuccessful()){
-                                final AlertDialog dialog = new SpotsDialog.Builder().setContext(getContext()).build();
-                                dialog.setMessage("Loading...");
-                                dialog.setCancelable(false);
-                                dialog.show();
-
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        dialog.dismiss();
-                                        Toast.makeText(getContext(), "Bạn đã đánh giá thành công!", Toast.LENGTH_SHORT).show();
-
-                                        getActivity().getSupportFragmentManager()
-                                                .beginTransaction()
-                                                .replace(R.id.fragment_container, new HotelDetailReviewRatingFragment())
-                                                .commit();
-                                    }
-                                }, 1000);
-
+                                Toast.makeText(getContext(), "Bạn đã đánh giá thành công!", Toast.LENGTH_SHORT).show();
+                                getActivity().getSupportFragmentManager().popBackStack();
                             }
+                            dialog.dismiss();
                         }
 
                         @Override
                         public void onFailure(Call<DataRatingWrite> call, Throwable t) {
                             Log.e("ERROR_REVIEW", t.getMessage());
+                            dialog.dismiss();
                         }
                     });
                 }
@@ -133,12 +127,19 @@ public class HotelDetailReviewRatingWriteFragment extends Fragment {
         editTitleRatingWrite    = view.findViewById(R.id.editTitleRatingWrite);
         editRatingReview        = view.findViewById(R.id.editRatingReview);
         btnRatingReview         = view.findViewById(R.id.btnRatingReview);
+
+        HOTEL_ID = getArguments().getString("HOTEL_ID");
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HotelDetailReviewRatingFragment()).commit();
+//            getActivity().getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragment_container, new HotelDetailReviewRatingFragment())
+//                    .commit();
+
+            getActivity().getSupportFragmentManager().popBackStack();
         }
 
         return super.onOptionsItemSelected(item);

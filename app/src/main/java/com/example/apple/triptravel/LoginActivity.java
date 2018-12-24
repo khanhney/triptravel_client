@@ -128,14 +128,13 @@ public class LoginActivity extends AppCompatActivity {
 
                                 startActivity(intent);
                                 finish();
-                                dialog.dismiss();
                             }
                         }, 1000);
-
-
+                        dialog.dismiss();
                     }
                 }else {
-                    Toast.makeText(LoginActivity.this, "User null", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Lỗi server!", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 }
             }
 

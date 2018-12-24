@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -31,7 +32,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="221dp"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/trip_1" />
+                    android:background="@color/colorWhite"
+                     />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -43,7 +45,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Đà Nẵng Sông Hàn"
                         android:textColor="@color/colorWhite"
                         android:textSize="30dp"
                         android:id="@+id/txtTitleHotelDetail"
@@ -84,7 +85,7 @@
                         android:layout_weight="6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="$125"/>
+                        />
 
                     <TextView
                         android:id="@+id/txtDateTimeHotelDetail"
@@ -93,7 +94,7 @@
                         android:layout_weight="4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="19 Dec - 21 Dec / 2 Guests"/>
+                        />
                 </LinearLayout>
 
                 <View
@@ -273,7 +274,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="4"
-                        android:text="Located in Rome, Ambassador luxury hotel is situared at 0.2 km from city center and 1.2 km from Colosseum. Other attractions like Trevi Fountain and Trajan’s …"
                         android:fontFamily="@font/avenirnext_regular"
                         android:textSize="16dp"
                         />
@@ -292,10 +292,10 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <ImageView
+                        <com.google.android.gms.maps.MapView
                             android:layout_width="match_parent"
                             android:layout_height="170dp"
-                            android:src="@drawable/map"/>
+                            android:id="@+id/mapHotelDetail"></com.google.android.gms.maps.MapView>
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>

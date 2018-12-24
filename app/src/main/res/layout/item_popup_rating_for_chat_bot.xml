@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Câu hỏi"/>
+
+                <TextView
+                    android:id="@+id/txtQuestion"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorOgrange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hello"/>
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="trả lời"/>
+
+                <TextView
+                    android:id="@+id/txtAnswer"
+                    android:textColor="@color/colorOgrange"
+                    android:textSize="16dp"
+                    android:text="Hi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:paddingTop="8dp"
+                    android:id="@+id/lnIconLove"
+                    android:gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_marginTop="16dp"
+                        android:id="@+id/imgLove"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/love"/>
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yêu"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="8dp"
+
+                    android:id="@+id/lnIconHaha"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_marginTop="16dp"
+
+                        android:id="@+id/imgHaha"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/haha"/>
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Haha"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="8dp"
+
+                    android:id="@+id/lnIconWow"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_marginTop="16dp"
+
+                        android:id="@+id/imgWow"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/wow"/>
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wow"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="8dp"
+
+                    android:id="@+id/lnIconSad"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_marginTop="16dp"
+
+                        android:id="@+id/imgSad"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/sad"/>
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Buồn"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:paddingTop="8dp"
+
+                    android:id="@+id/lnIconAngry"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_marginTop="16dp"
+
+                        android:id="@+id/imgAngry"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/angry"/>
+                    <TextView
+                        android:layout_marginTop="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giận"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

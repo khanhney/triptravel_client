@@ -4,6 +4,7 @@ import com.example.apple.triptravel.models.chat.ChatBot;
 import com.example.apple.triptravel.models.hotel.DataRatingWrite;
 import com.example.apple.triptravel.models.hotel.Hotel;
 import com.example.apple.triptravel.models.hotel.HotelRating;
+import com.example.apple.triptravel.models.rating.TrainRating;
 import com.example.apple.triptravel.models.search.SearchHotel;
 
 import retrofit2.Call;
@@ -20,15 +21,23 @@ public interface GetHotelService {
     Call<Hotel> getListHotel();
 
     @GET("/list-rating")
-    Call<HotelRating> getListHotelRating();
+    Call<HotelRating> getListHotelRating(@Query("hotelId") String hotelId);
 
     @POST("/add-rating")
     @FormUrlEncoded
     Call<DataRatingWrite> postRatingWrite(@Header("token") String token,
                                           @Field("title") String title,
                                           @Field("message") String message,
-                                          @Field("star") float star);
+                                          @Field("star") int star,
+                                          @Field("hotelID") String hotelID);
 
     @GET("/search-hotel")
     Call<SearchHotel> getSearchHotel(@Query("search")  String search);
+
+    @POST("/user-rating-aswer")
+    @FormUrlEncoded
+    Call<TrainRating> postTrainRating(@Field("message") String message,
+                                      @Field("answer") String answer,
+                                      @Field("pointUserRating") int point,
+                                      @Header("Token") String token);
 }

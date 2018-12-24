@@ -1,8 +1,6 @@
 package com.example.apple.triptravel.remotes;
 
-import io.reactivex.plugins.RxJavaPlugins;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {

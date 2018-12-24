@@ -55,7 +55,7 @@ public class AirPlanFindCreateViewFragment extends Fragment {
 
     private void init(View view) {
         recyclerView = view.findViewById(R.id.rlvShowDateTime);
-        recyclerView.hasFixedSize();
+        recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
@@ -100,7 +100,7 @@ public class AirPlanFindCreateViewFragment extends Fragment {
                 .setPrice("$200")
                 .build());
 
-        adapter = new ListDateTimeOfFlightAdapter(getContext(), list);
+        adapter = new ListDateTimeOfFlightAdapter(getActivity(), list);
 
         recyclerView.setAdapter(adapter);
     }
@@ -108,7 +108,12 @@ public class AirPlanFindCreateViewFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AirplanFindFragment()).commit();
+//            getActivity().getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragment_container, new AirplanFindFragment(), "trip_detail_fin_create_fragment")
+//                    .addToBackStack(null)
+//                    .commit();
+            getActivity().getSupportFragmentManager().popBackStack();
         }
 
         return super.onOptionsItemSelected(item);

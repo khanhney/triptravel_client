@@ -52,7 +52,10 @@ public class ListPopularDestinationsHotelAdapter extends RecyclerView.Adapter<Li
                 HotelDetailFragment hotelDetailFragment = new HotelDetailFragment();
                 hotelDetailFragment.setArguments(bundle);
 
-                ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, hotelDetailFragment).commit();
+                ((AppCompatActivity) context).getSupportFragmentManager()
+                        .beginTransaction().replace(R.id.fragment_container, hotelDetailFragment, "hotel_detail_fragment")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }

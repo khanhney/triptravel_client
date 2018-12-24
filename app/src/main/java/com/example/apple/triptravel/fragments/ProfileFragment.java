@@ -5,20 +5,33 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.apple.triptravel.LoginActivity;
 import com.example.apple.triptravel.R;
+import com.example.apple.triptravel.common.UserCommon;
+import com.example.apple.triptravel.interfaces.GetUserService;
+import com.example.apple.triptravel.models.login.UserInfo;
 
 import dmax.dialog.SpotsDialog;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +49,9 @@ public class ProfileFragment extends Fragment {
 
 
     private Button btnLogOut;
+    private TextView txtUsername, txtAddress, txtEmail;
+
+    private GetUserService service;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -80,6 +96,7 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_profile, container, false);
 
+        service = UserCommon.signUserUser();
         addControls(view);
         addEvents();
 
@@ -104,7 +121,7 @@ public class ProfileFragment extends Fragment {
                 builder.setPositiveButton("Đăng xuất", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("INFO_USER_AND_TOKEN", Context.MODE_PRIVATE);
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("INFO_USER_AND_TOKEN", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.remove("Token");
                         editor.apply();
@@ -121,6 +138,40 @@ public class ProfileFragment extends Fragment {
 
     private void addControls(View view) {
         btnLogOut = view.findViewById(R.id.btnLogOut);
+
+        txtUsername     = view.findViewById(R.id.txtUsername);
+        txtAddress      = view.findViewById(R.id.txtAddress);
+        txtEmail        = view.findViewById(R.id.txtEmail);
+
+
+        loadData();
+    }
+
+    private void loadData() {
+        SharedPreferences sharedPreferences =  getActivity().getSharedPreferences("INFO_USER_AND_TOKEN",
+                MODE_PRIVATE);
+
+        if (sharedPreferences.contains("Token")){
+            String token = sharedPreferences.getString("Token", "");
+            service.getUserInfo(token).enqueue(new Callback<UserInfo>() {
+                @Override
+                public void onResponse(Call<UserInfo> call, Response<UserInfo> response) {
+                    if (response.isSuccessful()){
+                        if (!response.body().getError()){
+                            txtUsername.setText(response.body().getData().getUsername());
+                            txtEmail.setText(response.body().getData().getEmail());
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<UserInfo> call, Throwable t) {
+                    Log.e("___ERROR", t.getMessage());
+                }
+            });
+
+        }
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

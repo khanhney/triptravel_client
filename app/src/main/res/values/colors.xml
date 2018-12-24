@@ -7,4 +7,5 @@
     <color name="colorGrey">#cecaca</color>
     <color name="colorToolbar">#F1F1F1</color>
     <color name="colorOgrange">#faae32</color>
+    <color name="colorDark">#9f000000</color>
 </resources>

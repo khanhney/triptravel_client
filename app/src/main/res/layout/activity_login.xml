@@ -17,7 +17,7 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="40dp">
@@ -33,21 +33,23 @@
             />
 
         <EditText
-            android:id="@+id/txtEmailLoginPage"
-            android:layout_width="369dp"
-            android:layout_height="56dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
+            android:id="@+id/txtEmailLoginPage"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
             android:hint="Tên tài khoản hoặc email"
             android:paddingLeft="16dp"
             android:background="@drawable/login_input_customize" />
 
         <EditText
-            android:id="@+id/txtPasswordLoginPage"
-            android:layout_width="369dp"
-            android:layout_height="56dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
+            android:id="@+id/txtPasswordLoginPage"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
             android:hint="Mật Khẩu"
             android:inputType="textPassword"
             android:paddingLeft="16dp"

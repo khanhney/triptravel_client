@@ -46,7 +46,13 @@ public class AirPlanFindCheckOut extends Fragment {
         btnPayNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TripFragment()).commit();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new TripFragment(), "trip_fragment")
+                        .addToBackStack(null)
+                        .commit();
+
+//                getActivity().getSupportFragmentManager().popBackStack("trip_fragment", 0);
                 Toast.makeText(getActivity(), "Đặt vé thành công!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -57,7 +63,8 @@ public class AirPlanFindCheckOut extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AirPlanFindCreateViewFragment()).commit();
+//            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AirPlanFindCreateViewFragment()).commit();
+            getActivity().getSupportFragmentManager().popBackStack();
         }
 
         return super.onOptionsItemSelected(item);

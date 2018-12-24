@@ -21,6 +21,13 @@ public class UserHotelRating {
     @Expose
     private Integer v;
 
+    public UserHotelRating() {
+        this.id         = "";
+        this.email      = "";
+        this.username   = "";
+        this.password   = "";
+    }
+
     public String getId() {
         return id;
     }

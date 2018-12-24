@@ -43,31 +43,25 @@ public class SecondActivity extends AppCompatActivity {
                 final Intent intent = new Intent();
 
                 if (sharedPreferences.contains("Token")){
-                    intent.setClass(SecondActivity.this, HomeActivity.class);
+                    final AlertDialog dialog = new SpotsDialog.Builder().setContext(SecondActivity.this).build();
+                    dialog.setMessage("Loading...");
+                    dialog.setCancelable(false);
+                    dialog.show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            dialog.dismiss();
+                            intent.setClass(SecondActivity.this, HomeActivity.class);
+
+                            startActivity(intent);
+
+                        }
+                    }, 1000);
                 }else {
                     intent.setClass(SecondActivity.this, SignUpActivity.class);
+                    startActivity(intent);
                 }
-
-                final AlertDialog dialog = new SpotsDialog.Builder().setContext(SecondActivity.this).build();
-                dialog.setMessage("Loading...");
-                dialog.setCancelable(false);
-                dialog.show();
-
-//                final Dialog dialog = new Dialog(SecondActivity.this);
-//                dialog.setContentView(R.layout.custom_dialog);
-//                dialog.setCancelable(false);
-//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//                dialog.show();
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        dialog.dismiss();
-                        startActivity(intent);
-
-                    }
-                }, 1000);
-
 
             }
         });

@@ -56,12 +56,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:progressTint="#faae32"
-                android:progressBackgroundTint="#faae32"
-                android:secondaryProgressTint="#e3807970"
-                style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:stepSize="1"
-                android:rating="4" />
+                android:theme="@style/RatingBar"
+                android:stepSize="1.0"
+                android:rating="3" />
 
                 <TextView
                     android:layout_width="match_parent"

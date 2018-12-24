@@ -32,9 +32,10 @@
 
         <EditText
             android:id="@+id/editEmailSignUpPage"
-            android:layout_width="356dp"
+            android:layout_width="match_parent"
             android:layout_height="41dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
             android:background="@drawable/login_input_customize"
             android:layout_marginTop="50dp"
             android:hint="Email"
@@ -42,9 +43,10 @@
 
         <EditText
             android:id="@+id/editUsernameSignUpPage"
-            android:layout_width="356dp"
+            android:layout_width="match_parent"
             android:layout_height="41dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
             android:background="@drawable/login_input_customize"
             android:layout_marginTop="20dp"
             android:hint="Tài Khoản"
@@ -52,9 +54,10 @@
 
         <EditText
             android:id="@+id/editPasswordSignUpPage"
-            android:layout_width="356dp"
+            android:layout_width="match_parent"
             android:layout_height="41dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
             android:background="@drawable/login_input_customize"
             android:layout_marginTop="20dp"
             android:hint="Mật Khẩu"

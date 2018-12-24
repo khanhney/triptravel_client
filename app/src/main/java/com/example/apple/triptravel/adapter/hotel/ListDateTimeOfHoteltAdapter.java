@@ -1,6 +1,7 @@
 package com.example.apple.triptravel.adapter.hotel;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -46,8 +47,15 @@ public class ListDateTimeOfHoteltAdapter extends RecyclerView.Adapter<ListDateTi
         listDateTimeOfFlightViewHoder.setListener(new onItemClickListener() {
             @Override
             public void onCLick(View v, int position, boolean isLongClick) {
-                Toast.makeText(context, "Ban vua click vao:" + airTicket.getBrand(), Toast.LENGTH_SHORT).show();
-                ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AirPlanFindCheckOut()).commit();
+                Bundle bundle = new Bundle();
+                AirPlanFindCheckOut checkOut = new AirPlanFindCheckOut();
+                checkOut.setArguments(bundle);
+
+                ((AppCompatActivity) context).getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, checkOut, "trip_detail_find_create_checkout_fragment")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }

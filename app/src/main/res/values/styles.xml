@@ -27,5 +27,10 @@
         <item name="DialogSpotCount">4</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#5affd000</item>
+        <item name="colorControlActivated">#ffd000</item>
+    </style>
+
 
 </resources>

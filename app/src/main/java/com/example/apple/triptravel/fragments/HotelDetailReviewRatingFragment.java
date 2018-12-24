@@ -42,6 +42,7 @@ public class HotelDetailReviewRatingFragment extends Fragment {
     private List<DataHotelRating> listReviewRating;
 
     private LinearLayout linearLayout;
+    private String ID_HOTEL;
 
     private GetHotelService service;
 
@@ -72,13 +73,28 @@ public class HotelDetailReviewRatingFragment extends Fragment {
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HotelDetailReviewRatingWriteFragment()).commit();
+                Bundle bundle = new Bundle();
+                bundle.putString("HOTEL_ID", ID_HOTEL);
+                HotelDetailReviewRatingWriteFragment writeFragment = new HotelDetailReviewRatingWriteFragment();
+                writeFragment.setArguments(bundle);
+
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, writeFragment, "hotel_detail_review_rating_write_fragment")
+                        .addToBackStack(null)
+                        .commit();
             }
         });
+
+        getIDHotel();
 
         init(view);
 
         return view;
+    }
+
+    private void getIDHotel() {
+        ID_HOTEL = getArguments().getString("ID_Hotel");
     }
 
     private void init(View view) {
@@ -93,12 +109,11 @@ public class HotelDetailReviewRatingFragment extends Fragment {
         dialog.setCancelable(false);
         dialog.show();
 
-        service.getListHotelRating().enqueue(new Callback<HotelRating>() {
+        service.getListHotelRating(ID_HOTEL).enqueue(new Callback<HotelRating>() {
             @Override
             public void onResponse(Call<HotelRating> call, Response<HotelRating> response) {
                 if (response.isSuccessful()){
                     if (response.body().getError()){
-                        dialog.dismiss();
                         Toast.makeText(getContext(), "Lỗi kết nối", Toast.LENGTH_SHORT).show();
                     }else {
                         new Handler().postDelayed(new Runnable() {
@@ -112,11 +127,14 @@ public class HotelDetailReviewRatingFragment extends Fragment {
 
                     adapterReviewRating.notifyDataSetChanged();
                 }
+                dialog.dismiss();
+
             }
 
             @Override
             public void onFailure(Call<HotelRating> call, Throwable t) {
                 Log.e("ERROR_HOTEL_RATING", t.getMessage());
+                dialog.dismiss();
             }
         });
 
@@ -128,9 +146,12 @@ public class HotelDetailReviewRatingFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HotelDetailFragment()).commit();
+//            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HotelDetailFragment()).commit();
+            getActivity().getSupportFragmentManager().popBackStack();
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
